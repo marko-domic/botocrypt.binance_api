@@ -1,0 +1,20 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0
+  title: Binance API schema
+  contact:
+    email: marko.domic@outlook.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  description: API schema of the Binance REST API
+# host: binance
+# basePath: /api
+# schemes: [ https ]
+# produces: [ application/json ]
+servers:
+  - url: 'https://api.binance.com'
+    description: Binance API Server
+paths:
+  /api/v3/depth:
+    $ref: paths/order-book.yml

@@ -1,0 +1,6 @@
+name: symbol
+in: query
+description: Currency pair id
+required: true
+schema:
+  type: string

@@ -1,0 +1,27 @@
+# Botocrypt Binance OpenAPI Definition
+
+A part of the Botocrypt platform, in this repository are defined API schemas for accessing Binance cryptocurrency 
+exchange. Their definitions are stored inside OpenAPI 3.0 YAML files in proper directory structure.
+
+## Working on the API Definition
+
+### Install
+
+1. Install [Node JS](https://nodejs.org/).
+2. Clone this repo and run `npm install` in the repo root.
+
+### Usage
+
+#### `npm start`
+Starts the reference docs preview server.
+
+#### `npm run build`
+Bundles the definition to the [dist.yaml](dist.yaml) file.
+
+#### `npm test`
+Validates the definition.
+
+## Information about OpenAPI Repo tool
+
+Information about tool which is used for creating specification along with its own documentation can be found on this 
+[link](https://github.com/Redocly/create-openapi-repo)

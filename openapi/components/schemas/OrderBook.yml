@@ -1,0 +1,20 @@
+---
+
+type: object
+description: Binance API order book reponse
+properties:
+  lastUpdateId:
+    type: integer
+    format: int64
+  bids:
+    type: array
+    items:
+      type: array
+      items: 
+        type: number
+  asks:
+    type: array
+    items:
+      type: array
+      items: 
+        type: number

@@ -1,0 +1,21 @@
+---
+
+get:
+  summary: Get cryptocurrencies order book from Binance for crypto pair
+  operationId: getOrderBookForCryptoPair
+  description: Get cryptocurrencies order book from CBinance for pair
+  tags:
+    - order-book
+  parameters:
+    - $ref: '../components/parameters/symbol.yml'
+  responses:
+    200:
+      description: Request successfull, cryptocurrencies orderbook returned
+      content:
+        text/json:
+          schema: { $ref: '../components/schemas/OrderBook.yml' }
+    400: { $ref: '../components/responses/BadRequest.yml' }
+    404: { $ref: '../components/responses/NotFound.yml' }
+    500: { $ref: '../components/responses/InternalError.yml' }
+    501: { $ref: '../components/responses/NotImplemented.yml' }
+      

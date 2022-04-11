@@ -1,0 +1,116 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0
+  title: Binance API schema
+  contact:
+    email: marko.domic@outlook.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description: API schema of the Binance REST API
+servers:
+  - url: https://api.binance.com
+    description: Binance API Server
+paths:
+  /api/v3/depth:
+    get:
+      summary: Get cryptocurrencies order book from Binance for crypto pair
+      operationId: getOrderBookForCryptoPair
+      description: Get cryptocurrencies order book from CBinance for pair
+      tags:
+        - order-book
+      parameters:
+        - $ref: '#/components/parameters/symbol'
+      responses:
+        '200':
+          description: Request successfull, cryptocurrencies orderbook returned
+          content:
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OrderBook'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+        '501':
+          $ref: '#/components/responses/NotImplemented'
+components:
+  parameters:
+    symbol:
+      name: symbol
+      in: query
+      description: Currency pair id
+      required: true
+      schema:
+        type: string
+  schemas:
+    OrderBook:
+      type: object
+      description: Binance API order book reponse
+      properties:
+        lastUpdateId:
+          type: integer
+          format: int64
+        bids:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+        asks:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+  responses:
+    BadRequest:
+      description: 400 - The request was malformed or missing a field
+      content:
+        application/json:
+          schema:
+            description: Optional info about how the request was bad
+            type: object
+            properties:
+              fieldName:
+                description: >-
+                  If this error was due to a particular field, this is the name
+                  of that field
+                type: string
+              message:
+                description: A text message
+                type: string
+    NotFound:
+      description: 404 - The request resource could not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: A text message
+                type: string
+    InternalError:
+      description: >-
+        500 - The server encountered an internal error while processing this
+        request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: A text message
+                type: string
+    NotImplemented:
+      description: 501 - The request method is not implemented
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: A text message
+                type: string
